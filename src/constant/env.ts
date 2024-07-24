@@ -1,0 +1,1 @@
+export const apiBase = process.env.React_APP_API_BASE

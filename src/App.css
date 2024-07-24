@@ -1,0 +1,88 @@
+.provider {
+    text-align: center;
+}
+
+.bg-Light {
+    background-color: #1a1a2e;
+}
+
+.bg-dark {
+    background-color: #325776;
+    z-index: 1;
+}
+.providerList {
+    display: flex;
+    padding-inline: 5px;
+    padding-block: 3px;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.providerParent {
+    margin-block: 5px;
+}
+
+.providerDropDown {
+    height: 75px;
+    background-color: #1a1a2e;
+    border-radius: 5px;
+}
+
+.providerData {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-inline: 5px;
+    cursor: pointer;
+}
+
+.provideImg {
+    max-width: 33px !important;
+    max-height: 33px !important;
+    margin-right: 5px;
+}
+
+.dataDisplay {
+    color: #f2f2f2;
+    padding: 40px;
+}
+.dataDisplay .heading {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+.dataDisplay .heading img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.dataDisplay .parentDiv {
+    margin-top: 23px;
+}
+
+.dataDisplay .parentDiv .title {
+    font-size: larger;
+    margin-bottom: 5px;
+}
+
+.provider-explore-btn-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.provider-explore-more-btn-container {
+    text-align: center;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.7);
+}
