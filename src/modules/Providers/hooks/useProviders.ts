@@ -5,7 +5,7 @@ interface useProvidersProps {
     skip?: boolean
 }
 
-const useProviders = ({ skip }: useProvidersProps) => {
+const useProviders = ({ skip }: useProvidersProps = { skip: false}) => {
     const [providers, setProviders] = useState<string[]>([])
     const [isLoading, setIsLoading] = useState<boolean>(false)
 

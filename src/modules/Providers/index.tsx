@@ -14,7 +14,7 @@ const Providers: React.FC = () => {
     const [activeProviderName, setactiveProviderName] = useState<string>("");
     const [showProviderDetails, setShowProviderDetails] = useState<boolean>(false);
     const [isProviderDetailCollapsed, setIsProviderDetailCollapsed] = useState<boolean>(false);
-    const { providers } = useProviders({ skip: !showSiderbar });
+    const { providers } = useProviders();
     const { providerDetails, setProviderDetails } = useProviderDetails({
         name: activeProviderName
     });
