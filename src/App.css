@@ -23,17 +23,29 @@
 }
 
 .providerDropDown {
-    height: 75px;
     background-color: #1a1a2e;
     border-radius: 5px;
+    padding: 10px;
 }
 
-.providerData {
-    height: 50px;
-    display: flex;
+.provider-accordion-detail {
     align-items: center;
     padding-inline: 5px;
     cursor: pointer;
+    transition: all 0.1s;
+    overflow: hidden;
+    display: flex;
+}
+
+.provider-accordion-detail.accordion-close {
+    visibility: hidden;
+    transform: translateZ(0);
+    max-height: 0;
+}
+
+.provider-accordion-detail.accordion-open {
+    visibility: visible;
+    max-height: 500px;
 }
 
 .provideImg {

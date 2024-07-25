@@ -13,7 +13,7 @@ const SidebarContainer = styled.div`
   color: white;
   overflow-y: auto;
   transform: translateX(525px);
-  transition: 1s ease all;
+  transition: 0.4s ease all;
   &.siderbar-open {
     transform: translateX(0);
   }

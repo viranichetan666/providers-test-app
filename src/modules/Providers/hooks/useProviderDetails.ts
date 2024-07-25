@@ -35,7 +35,8 @@ const useProviderDetails = ({ skip, name }: useProviderDetailsProps) => {
 
     return {
         providerDetails: providerDetails,
-        providerDetailsLoading: isLoading
+        providerDetailsLoading: isLoading,
+        setProviderDetails: setProviderDetails
     }
 
 }
