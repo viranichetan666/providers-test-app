@@ -37,15 +37,14 @@
     display: flex;
 }
 
-.provider-accordion-detail.accordion-close {
+.provider-accordion-detail-main-container.accordion-close {
     visibility: hidden;
     transform: translateZ(0);
     max-height: 0;
 }
 
-.provider-accordion-detail.accordion-open {
+.provider-accordion-detail-main-container.accordion-open {
     visibility: visible;
-    max-height: 500px;
 }
 
 .provideImg {

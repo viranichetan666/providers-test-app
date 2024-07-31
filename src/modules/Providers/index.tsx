@@ -12,14 +12,16 @@ import { IProviderDetails } from "../../services/getProviderByname";
 const Providers: React.FC = () => {
     const [showSiderbar, setShowSideBar] = useState<boolean>(false);
     const [activeProviderName, setactiveProviderName] = useState<string>("");
+    const [activeProviderDetails, setActiveProviderDetails] = useState<IProviderDetails>();
     const [showProviderDetails, setShowProviderDetails] = useState<boolean>(false);
     const [isProviderDetailCollapsed, setIsProviderDetailCollapsed] = useState<boolean>(false);
     const { providers } = useProviders();
-    const { providerDetails, setProviderDetails } = useProviderDetails({
+    const { providerDetails, providerDetailsLoading, setProviderDetails } = useProviderDetails({
         name: activeProviderName
     });
 
-    const handleShowProviderDetails = () => {
+    const handleShowProviderDetails = (provider: IProviderDetails) => {
+        setActiveProviderDetails(provider)
         setShowProviderDetails(true);
         setShowSideBar(false);
     };
@@ -31,10 +33,11 @@ const Providers: React.FC = () => {
     };
 
     const toggleProviderAccordionPanel = (item: string) => {
+        console.log("item", item, 'activeProviderName', activeProviderName)
         if (activeProviderName === item) {
             setIsProviderDetailCollapsed(!isProviderDetailCollapsed);
         } else {
-            setProviderDetails({} as IProviderDetails);
+            setProviderDetails([] as IProviderDetails[]);
             setIsProviderDetailCollapsed(true);
             setactiveProviderName(item);
         }
@@ -44,8 +47,8 @@ const Providers: React.FC = () => {
         <div className={`${showSiderbar ? "bg-Light" : "bg-dark"}`}>
             <AppContainer>
                 {/* show provider details */}
-                {showProviderDetails && providerDetails && (
-                    <ProviderDetails providerDetails={providerDetails} />
+                {showProviderDetails && activeProviderDetails && (
+                    <ProviderDetails providerDetails={activeProviderDetails} />
                 )}
                 <div
                     className={
@@ -94,15 +97,39 @@ const Providers: React.FC = () => {
                                 </div>
                                 <div
                                     className={classNames(
-                                        "provider-accordion-detail",
+                                        'provider-accordion-detail-main-container',
                                         activeProviderName === item &&
                                             isProviderDetailCollapsed
                                             ? "accordion-open"
                                             : "accordion-close",
                                     )}
-                                    onClick={handleShowProviderDetails}
                                 >
-                                    {providerDetails?.info && (
+                                    {
+                                        providerDetailsLoading &&
+                                        <div>Loading...</div>
+                                    }
+                                    {
+                                        !!providerDetails?.length && activeProviderName === item && isProviderDetailCollapsed && 
+                                        providerDetails.map((provider, index) => {
+                                            return (
+                                                <div className="provider-accordion-detail" key={index} onClick={() => handleShowProviderDetails(provider)} >
+                                                    <img
+                                                        className="provideImg"
+                                                        src={
+                                                            provider?.info?.[
+                                                                "x-logo"
+                                                            ].url
+                                                        }
+                                                        alt="providerimg"
+                                                    />
+                                                    <span>
+                                                        {provider?.info?.title}
+                                                    </span>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {/* {providerDetails?.info && (
                                         <>
                                             <img
                                                 className="provideImg"
@@ -117,7 +144,7 @@ const Providers: React.FC = () => {
                                                 {providerDetails?.info?.title}
                                             </span>
                                         </>
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                         </div>

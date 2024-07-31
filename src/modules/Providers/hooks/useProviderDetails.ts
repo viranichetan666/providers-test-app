@@ -7,7 +7,7 @@ interface useProviderDetailsProps {
 }
 
 const useProviderDetails = ({ skip, name }: useProviderDetailsProps) => {
-    const [providerDetails, setProviderDetails] = useState<IProviderDetails>()
+    const [providerDetails, setProviderDetails] = useState<IProviderDetails[]>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const fetchProviderDetails = useCallback(async () => {
@@ -16,13 +16,13 @@ const useProviderDetails = ({ skip, name }: useProviderDetailsProps) => {
             const result = await fetchProviderByName(name);
             if(result && result.apis) {
                 const apis = result.apis
-                const firstProviderDetails = apis[Object.keys(apis)[0]]
-                setProviderDetails(firstProviderDetails);
+                const allProviderDetails = Object.values(apis)
+                setProviderDetails(allProviderDetails);
             }
-            setIsLoading(false)
         } catch (error) {
-            setIsLoading(false)
             console.error('Error fetching provider list:', error);
+        } finally {
+            setIsLoading(false);
         }
     }, [name])
 

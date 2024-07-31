@@ -38,21 +38,13 @@ export interface IProviderDetails {
   link: string;
 }
 
-function fetchProviderByName(name: string): Promise<IProviderDetailsResponse> {
-  return new Promise((resolve, reject) => {
-    fetch(`${apiBase}/${name}.json`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
+const fetchProviderByName = async (name: string): Promise<IProviderDetailsResponse> => {
+  const data = await fetch(`${apiBase}/${name}.json`)
+  const result = await data.json()
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(result);
+    }, 3000);
   });
 }
 
